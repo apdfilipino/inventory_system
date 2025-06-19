@@ -13,5 +13,6 @@ public class ApplicationDbContext: DbContext
     {
         base.OnModelCreating(modelBuilder);
         new ItemConfiguration().Configure(modelBuilder.Entity<Item>());
+        new UnitConfiguration().Configure(modelBuilder.Entity<Unit>());
     }
 }
