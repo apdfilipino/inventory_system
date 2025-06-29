@@ -12,4 +12,6 @@ public class Unit
         Id = UnitId.Create(id);
         Name = name;
     }
+    
+    public Unit() {}
 }

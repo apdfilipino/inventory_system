@@ -13,10 +13,16 @@ public class ItemConfiguration: IEntityTypeConfiguration<Item>
         
         itemBuilder.HasKey(item => item.Id);
         
-        itemBuilder.HasOne<Unit>()
+        itemBuilder
+            .HasOne(i => i.Unit)
             .WithMany()
             .HasForeignKey(item => item.UnitId)
             .OnDelete(DeleteBehavior.Restrict);
+        
+        itemBuilder
+            .HasMany(i => i.Categories)
+            .WithMany(c => c.Items)
+            .UsingEntity(j => j.ToTable("item_categories"));
         
         itemBuilder.Property(item => item.TenantId)
             .IsRequired()

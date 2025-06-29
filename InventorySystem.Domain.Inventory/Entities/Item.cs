@@ -11,6 +11,11 @@ public class Item
     public string Description { get; }
     public UnitId UnitId { get; }
     
+    // Navigation Properties
+    public Unit Unit { get; }
+    public List<Category> Categories { get; } = new();
+    public List<Inventory> Inventories { get; } = new();
+
     public Item(Guid id, Guid tenantId, string name, string description, Guid unitId)
     {
         Id = ItemId.Create(id);
@@ -19,4 +24,6 @@ public class Item
         Description = description;
         UnitId = UnitId.Create(unitId);
     }
+    
+    public Item() {}
 }

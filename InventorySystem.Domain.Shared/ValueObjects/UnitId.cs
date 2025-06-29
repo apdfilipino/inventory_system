@@ -1,13 +1,8 @@
 namespace InventorySystem.Domain.Shared.ValueObjects;
 
-public class UnitId
+public class UnitId: ValueObject<Guid, UnitId>
 {
-    public Guid Value { get; }
-
-    private UnitId(Guid value)
-    {
-        Value = value;
-    }
+    private UnitId(Guid value): base(value) { }
     
     public static UnitId Create(Guid value)
     {
