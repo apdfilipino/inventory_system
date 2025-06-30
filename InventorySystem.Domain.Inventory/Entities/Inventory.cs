@@ -5,9 +5,9 @@ namespace InventorySystem.Domain.Inventory.Entities;
 
 public class Inventory
 {
-    public InventoryId Id { get; }
-    public TenantId TenantId { get; }
-    public ItemId ItemId { get; }
+    public EntityId Id { get; }
+    public EntityId TenantId { get; }
+    public EntityId ItemId { get; }
     public decimal Price { get; }
     public int Quantity { get; }
 
@@ -17,9 +17,9 @@ public class Inventory
     
     public Inventory(Guid id, Guid tenantId, Guid itemId, decimal price, int quantity)
     {
-        Id = InventoryId.Create(id);
-        TenantId = TenantId.Create(tenantId);
-        ItemId = ItemId.Create(itemId);
+        Id = EntityId.Create(id);
+        TenantId = EntityId.Create(tenantId);
+        ItemId = EntityId.Create(itemId);
         Price = price; 
         Quantity = quantity;
     }

@@ -1,20 +1,19 @@
-using InventorySystem.Domain.Sales.ValueObjects;
 using InventorySystem.Domain.Shared.ValueObjects;
 
 namespace InventorySystem.Domain.Sales.Entities;
 
 public class Sale
 {
-    public SaleId Id { get; }
-    public TenantId TenantId { get; }
+    public EntityId Id { get; }
+    public EntityId TenantId { get; }
     public DateTime CreatedAt { get; }
-    public Guid CreatedBy { get; } // TODO: Update User is ready
+    public EntityId CreatedBy { get; }
     public decimal TotalAmount { get; }
     public decimal EffectiveTotalAmount { get; }
     public bool PromoApplied { get; }
     
     // Navigation Property
-    public List<Promo> Promos { get; }
+    public List<Promo> Promos { get; } = new();
 
     public Sale(Guid id,
         Guid tenantId,
@@ -24,10 +23,10 @@ public class Sale
         decimal effectiveTotalAmount,
         bool promoApplied)
     {
-        Id = SaleId.Create(id);
-        TenantId = TenantId.Create(tenantId);
+        Id = EntityId.Create(id);
+        TenantId = EntityId.Create(tenantId);
         CreatedAt = createdAt;
-        CreatedBy = createdBy;
+        CreatedBy = EntityId.Create(createdBy);
         TotalAmount = totalAmount;
         EffectiveTotalAmount = effectiveTotalAmount;
         PromoApplied = promoApplied;

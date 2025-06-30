@@ -1,6 +1,8 @@
 using InventorySystem.Domain.Inventory.Entities;
 using InventorySystem.Domain.Inventory.Enums;
 using InventorySystem.Domain.Sales.Entities;
+using InventorySystem.Domain.Users.Entities;
+using InventorySystem.Infrastructure.Converters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -19,37 +21,43 @@ public class InventoryHistoryConfiguration: IEntityTypeConfiguration<InventoryHi
             .WithMany(inventory => inventory.History)
             .HasForeignKey(history => history.InventoryId);
         
-        // TODO: Update when Tenant is created
         historyBuilder
-            .HasOne(history => history.TenantId)
+            .HasOne<Tenant>()
             .WithMany()
             .HasForeignKey(history => history.TenantId);
         
-        // TODO: Update when Sale is created
         historyBuilder
             .HasOne<Sale>()
             .WithMany()
             .HasForeignKey(history => history.SaleId)
             .IsRequired(false);
         
-        // TODO: Update when User is created
-        // historyBuilder
-        //     .HasOne(history =>  history.CreatedBy)
-        
         historyBuilder
-            .Property(history => history.TenantId)
-            .IsRequired()
-            .HasColumnName("tenant_id");
+            .HasOne<User>()
+            .WithMany()
+            .HasForeignKey(history => history.CreatedBy);
         
         historyBuilder
             .Property(history => history.InventoryId)
             .IsRequired()
+            .HasConversion(new EntityIdConverter())
             .HasColumnName("inventory_id");
         
         historyBuilder
-            .Property(history => history.TransactionType)
-            .HasConversion<string>()
+            .Property(history => history.TenantId)
             .IsRequired()
+            .HasConversion(new EntityIdConverter())
+            .HasColumnName("tenant_id");
+        
+        historyBuilder
+            .Property(history => history.SaleId)
+            .HasConversion(new EntityIdConverter())
+            .HasColumnName("sale_id");
+        
+        historyBuilder
+            .Property(history => history.TransactionType)
+            .IsRequired()
+            .HasConversion<string>()
             .HasColumnName("transaction_type");
         
         historyBuilder
@@ -66,11 +74,6 @@ public class InventoryHistoryConfiguration: IEntityTypeConfiguration<InventoryHi
             .Property(history => history.Price)
             .IsRequired()
             .HasColumnName("price");
-        
-        historyBuilder
-            .Property(history => history.SaleId)
-            .IsRequired()
-            .HasColumnName("sale_id");
         
         historyBuilder
             .Property(history => history.CreatedBy)

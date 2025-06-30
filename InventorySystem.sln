@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorySystem.Domain.Shar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorySystem.Domain.Sales", "InventorySystem.Domain.Sales\InventorySystem.Domain.Sales.csproj", "{D0E445F9-7D55-4938-97A7-7170AD6005B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorySystem.Domain.Users", "InventorySystem.Domain.Users\InventorySystem.Domain.Users.csproj", "{06E3C5B9-F580-4AD1-BB37-250EB832E931}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{D0E445F9-7D55-4938-97A7-7170AD6005B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0E445F9-7D55-4938-97A7-7170AD6005B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0E445F9-7D55-4938-97A7-7170AD6005B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06E3C5B9-F580-4AD1-BB37-250EB832E931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06E3C5B9-F580-4AD1-BB37-250EB832E931}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06E3C5B9-F580-4AD1-BB37-250EB832E931}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06E3C5B9-F580-4AD1-BB37-250EB832E931}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

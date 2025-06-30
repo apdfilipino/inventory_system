@@ -1,4 +1,5 @@
 using InventorySystem.Domain.Sales.Entities;
+using InventorySystem.Domain.Users.Entities;
 using InventorySystem.Infrastructure.Converters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -11,27 +12,31 @@ public class SaleConfiguration: IEntityTypeConfiguration<Sale>
     {
         saleBuilder.HasKey(sale => sale.Id);
         
-        // TODO when Tenant is Available
-        // saleBuilder
-        //     .HasOne<Tenant>()
-        //     .WithMany()
-        //     .HasForeignKey(sale => sale.TenantId);
+        saleBuilder
+            .HasOne<Tenant>()
+            .WithMany()
+            .HasForeignKey(sale => sale.TenantId);
         
-        // TODO when User is Available
-        // saleBuilder
-        //     .HasOne<User>()
-        //     .WithMany()
-        //     .HasForeignKey(sale => sale.CreatedBy);
+        saleBuilder
+            .HasOne<User>()
+            .WithMany()
+            .HasForeignKey(sale => sale.CreatedBy);
+
+        saleBuilder
+            .HasMany(sale => sale.Promos)
+            .WithMany(promo => promo.Sales)
+            .UsingEntity(j => j.ToTable("sale_promos"));
         
         saleBuilder
             .Property(sale => sale.Id)
             .IsRequired()
-            .HasConversion(new SaleIdConverter())
+            .HasConversion(new EntityIdConverter())
             .HasColumnName("id");
         
         saleBuilder
             .Property(sale => sale.TenantId)
             .IsRequired()
+            .HasConversion(new EntityIdConverter())
             .HasColumnName("tenant_id");
         
         saleBuilder
@@ -57,6 +62,7 @@ public class SaleConfiguration: IEntityTypeConfiguration<Sale>
         saleBuilder
             .Property(sale => sale.PromoApplied)
             .IsRequired()
+            .HasDefaultValue(false)
             .HasColumnName("promo_applied");
     }
 }

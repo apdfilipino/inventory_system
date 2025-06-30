@@ -16,7 +16,7 @@ public class CategoryConfiguration: IEntityTypeConfiguration<Category>
         categoryBuilder
             .Property(category => category.Id)
             .IsRequired()
-            .HasConversion(new CategoryIdConverter())
+            .HasConversion(new EntityIdConverter())
             .HasColumnName("id");
 
         categoryBuilder
