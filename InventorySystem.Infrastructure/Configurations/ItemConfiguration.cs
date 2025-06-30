@@ -26,7 +26,7 @@ public class ItemConfiguration: IEntityTypeConfiguration<Item>
         
         itemBuilder.Property(item => item.TenantId)
             .IsRequired()
-            .HasConversion(new TenantIdConverter())
+            .HasConversion(new EntityIdConverter())
             .HasColumnName("tenant_id");
         
         itemBuilder.Property(item => item.Name)
@@ -36,12 +36,12 @@ public class ItemConfiguration: IEntityTypeConfiguration<Item>
         
         itemBuilder.Property(item => item.Id)
             .IsRequired()
-            .HasConversion(new ItemIdConverter())
+            .HasConversion(new EntityIdConverter())
             .HasColumnName("id");
         
         itemBuilder.Property(item => item.UnitId)
             .IsRequired()
-            .HasConversion(new UnitIdConverter())
+            .HasConversion(new EntityIdConverter())
             .HasColumnName("unit_id");
     }
 }

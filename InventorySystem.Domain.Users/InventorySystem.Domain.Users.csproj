@@ -10,8 +10,4 @@
       <ProjectReference Include="..\InventorySystem.Domain.Shared\InventorySystem.Domain.Shared.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="ValueObjects\" />
-    </ItemGroup>
-
 </Project>

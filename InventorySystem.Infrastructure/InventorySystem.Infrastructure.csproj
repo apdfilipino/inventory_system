@@ -9,6 +9,7 @@
     <ItemGroup>
       <ProjectReference Include="..\InventorySystem.Domain.Inventory\InventorySystem.Domain.Inventory.csproj" />
       <ProjectReference Include="..\InventorySystem.Domain.Sales\InventorySystem.Domain.Sales.csproj" />
+      <ProjectReference Include="..\InventorySystem.Domain.Users\InventorySystem.Domain.Users.csproj" />
     </ItemGroup>
 
     <ItemGroup>

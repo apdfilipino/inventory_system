@@ -5,11 +5,11 @@ namespace InventorySystem.Domain.Inventory.Entities;
 
 public class Item
 {
-    public ItemId Id { get; }
-    public TenantId TenantId { get; }
+    public EntityId Id { get; }
+    public EntityId TenantId { get; }
     public ItemName Name { get; }
     public string Description { get; }
-    public UnitId UnitId { get; }
+    public EntityId UnitId { get; }
     
     // Navigation Properties
     public Unit Unit { get; }
@@ -18,11 +18,11 @@ public class Item
 
     public Item(Guid id, Guid tenantId, string name, string description, Guid unitId)
     {
-        Id = ItemId.Create(id);
-        TenantId = TenantId.Create(tenantId);
+        Id = EntityId.Create(id);
+        TenantId = EntityId.Create(tenantId);
         Name = ItemName.Create(name);
         Description = description;
-        UnitId = UnitId.Create(unitId);
+        UnitId = EntityId.Create(unitId);
     }
     
     public Item() {}

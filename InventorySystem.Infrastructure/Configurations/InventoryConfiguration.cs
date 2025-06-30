@@ -20,19 +20,19 @@ public class InventoryConfiguration: IEntityTypeConfiguration<Inventory>
         
         inventoryBuilder
             .Property(inventory => inventory.Id)
-            .HasConversion(new InventoryIdConverter())
+            .HasConversion(new EntityIdConverter())
             .IsRequired()
             .HasColumnName("id");
         
         inventoryBuilder
             .Property(inventory => inventory.TenantId)
-            .HasConversion(new TenantIdConverter())
+            .HasConversion(new EntityIdConverter())
             .IsRequired()
             .HasColumnName("tenant_id");
         
         inventoryBuilder
             .Property(inventory => inventory.ItemId)
-            .HasConversion(new ItemIdConverter())
+            .HasConversion(new EntityIdConverter())
             .IsRequired()
             .HasColumnName("item_id");
 

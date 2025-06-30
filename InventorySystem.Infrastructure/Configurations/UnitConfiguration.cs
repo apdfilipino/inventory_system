@@ -15,7 +15,7 @@ public class UnitConfiguration: IEntityTypeConfiguration<Unit>
 
         unitBuilder.Property(unit => unit.Id)
             .IsRequired()
-            .HasConversion(new UnitIdConverter())
+            .HasConversion(new EntityIdConverter())
             .HasColumnName("id");
         
         unitBuilder.Property(unit => unit.Name)

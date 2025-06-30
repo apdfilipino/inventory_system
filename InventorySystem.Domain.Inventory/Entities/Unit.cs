@@ -4,12 +4,12 @@ namespace InventorySystem.Domain.Inventory.Entities;
 
 public class Unit
 {
-    public UnitId Id { get; }
+    public EntityId Id { get; }
     public string Name { get; }
 
     public Unit(Guid id, string name)
     {
-        Id = UnitId.Create(id);
+        Id = EntityId.Create(id);
         Name = name;
     }
     

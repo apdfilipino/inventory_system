@@ -6,15 +6,15 @@ namespace InventorySystem.Domain.Inventory.Entities;
 
 public class InventoryHistory
 {
-    public Guid Id { get; } // TODO: Turn into ValueObject
-    public TenantId TenantId { get; }
-    public InventoryId InventoryId { get; }
+    public EntityId Id { get; }
+    public EntityId TenantId { get; }
+    public EntityId InventoryId { get; }
     public InventoryTransactionType TransactionType { get; }
     public int ChangeQuantity { get; }
     public string ChangeReference { get; }
     public decimal Price { get; }
-    public Guid? SaleId { get; } // TODO: Update when Sale Entity is Created
-    public Guid CreatedBy { get; } // TODO: Update when User Entity is Created
+    public EntityId? SaleId { get; }
+    public EntityId CreatedBy { get; }
     public DateTime CreatedAt { get; }
 
     // Navigation Properties
@@ -26,21 +26,21 @@ public class InventoryHistory
         Guid inventoryId,
         InventoryTransactionType transactionType,
         decimal price,
-        int quantity,
+        int changeQuantity,
         string changeReference,
         Guid? saleId,
         Guid createdBy,
         DateTime createdAt)
     {
-        Id = id;
-        TenantId = TenantId.Create(tenantId);
-        InventoryId = InventoryId.Create(inventoryId);
+        Id = EntityId.Create(id);
+        TenantId = EntityId.Create(tenantId);
+        InventoryId = EntityId.Create(inventoryId);
         TransactionType = transactionType;
-        ChangeQuantity = quantity;
+        ChangeQuantity = changeQuantity;
         ChangeReference = changeReference;
-        SaleId = saleId;
+        SaleId = EntityId.Create(saleId);
         Price = price;
-        CreatedBy = createdBy;
+        CreatedBy = EntityId.Create(createdBy);
         CreatedAt = createdAt;
     }
     
