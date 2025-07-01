@@ -17,4 +17,8 @@ public class Tenant
         Id = EntityId.Create(id);
         Name = name;
     }
+
+    public Tenant()
+    {
+    }
 }

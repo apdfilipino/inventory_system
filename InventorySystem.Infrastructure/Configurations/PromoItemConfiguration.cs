@@ -15,11 +15,10 @@ public class PromoItemConfiguration: IEntityTypeConfiguration<PromoItem>
         promoItemBuilder.HasKey(promoItem => promoItem.Id);
 
         promoItemBuilder
-            .HasOne<Promo>()
-            .WithMany()
+            .HasOne(promoItem => promoItem.Promo)
+            .WithMany(promo => promo.PromoItems)
             .HasForeignKey(promoItem => promoItem.PromoId)
             .OnDelete(DeleteBehavior.Cascade);
-
         
         promoItemBuilder
             .HasOne<Tenant>()

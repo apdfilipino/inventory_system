@@ -1,3 +1,4 @@
+using InventorySystem.Domain.Users.Constants;
 using InventorySystem.Domain.Users.Entities;
 using InventorySystem.Infrastructure.Converters;
 using Microsoft.EntityFrameworkCore;
@@ -18,5 +19,10 @@ public class TenantConfiguration: IEntityTypeConfiguration<Tenant>
             .HasConversion(new EntityIdConverter())
             .ValueGeneratedOnAdd()
             .HasColumnName("id");
+
+        tenantBuilder.Property(tenant => tenant.Name)
+            .IsRequired()
+            .HasMaxLength(UserConstants.MaxNameLength)
+            .HasColumnName("name");
     }
 }

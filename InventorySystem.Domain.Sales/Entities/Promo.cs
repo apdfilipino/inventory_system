@@ -4,7 +4,7 @@ namespace InventorySystem.Domain.Sales.Entities;
 
 public class Promo
 {
-    public Guid Id { get; }
+    public EntityId Id { get; }
     public string Name { get; }
     public string Description { get; }
     public EntityId TenantId { get; }
@@ -26,7 +26,7 @@ public class Promo
         DateTime createdAt,
         DateTime? expiresAt)
     {
-        Id = id;
+        Id = EntityId.Create(id);
         Name = name;
         Description = description;
         TenantId = EntityId.Create(tenantId);
