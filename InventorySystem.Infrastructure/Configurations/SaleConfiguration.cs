@@ -47,6 +47,7 @@ public class SaleConfiguration: IEntityTypeConfiguration<Sale>
         saleBuilder
             .Property(sale => sale.CreatedBy)
             .IsRequired()
+            .HasConversion(new EntityIdConverter())
             .HasColumnName("created_by");
         
         saleBuilder

@@ -1,5 +1,6 @@
 using InventorySystem.Domain.Inventory.Entities;
 using InventorySystem.Domain.Sales.Entities;
+using InventorySystem.Domain.Users.Entities;
 using InventorySystem.Infrastructure.Configurations;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +8,11 @@ namespace InventorySystem.Infrastructure.Data;
 
 public class ApplicationDbContext: DbContext
 {
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
+    {
+        
+    }
+    
     public DbSet<Item> Items { get; set; }
     public DbSet<Unit> Units { get; set; }
     public DbSet<Category> Categories { get; set; }
@@ -16,6 +22,8 @@ public class ApplicationDbContext: DbContext
     public DbSet<Promo> Promos { get; set; }
     public DbSet<PromoItem> PromoItems { get; set; }
     public DbSet<SaleInventoryItem> SaleInventories { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Tenant> Tenants { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -29,5 +37,7 @@ public class ApplicationDbContext: DbContext
         new PromoConfiguration().Configure(modelBuilder.Entity<Promo>());
         new PromoItemConfiguration().Configure(modelBuilder.Entity<PromoItem>());
         new SaleInventoryItemConfiguration().Configure(modelBuilder.Entity<SaleInventoryItem>());
+        new UserConfiguration().Configure(modelBuilder.Entity<User>());
+        new TenantConfiguration().Configure(modelBuilder.Entity<Tenant>());
     }
 }

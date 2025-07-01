@@ -38,6 +38,12 @@ public class InventoryHistoryConfiguration: IEntityTypeConfiguration<InventoryHi
             .HasForeignKey(history => history.CreatedBy);
         
         historyBuilder
+            .Property(history => history.Id)
+            .IsRequired()
+            .HasConversion(new EntityIdConverter())
+            .HasColumnName("id");
+        
+        historyBuilder
             .Property(history => history.InventoryId)
             .IsRequired()
             .HasConversion(new EntityIdConverter())
@@ -78,6 +84,7 @@ public class InventoryHistoryConfiguration: IEntityTypeConfiguration<InventoryHi
         historyBuilder
             .Property(history => history.CreatedBy)
             .IsRequired()
+            .HasConversion(new EntityIdConverter())
             .HasColumnName("created_by");
         
         historyBuilder

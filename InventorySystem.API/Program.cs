@@ -1,3 +1,6 @@
+using InventorySystem.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace InventorySystem.API;
 
 public class Program
@@ -12,6 +15,12 @@ public class Program
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        {
+            options.UseNpgsql(builder.Configuration.GetConnectionString("PgConnection"));
+        });
+        
 
         var app = builder.Build();
 
